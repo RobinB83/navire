@@ -5,11 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\AbstractType;
 
 /**
  * @Route("/aisshiptype", name="aisshiptype_")
  */
-class AisShipTypeController extends AbstractController
+class AisShipTypeType extends AbstractType
 {
     /**
      * @Route("/ais/ship/type", name="ais_ship_type")

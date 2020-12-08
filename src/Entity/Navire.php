@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\NavireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
@@ -18,8 +20,8 @@ class Navire
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=7)
-     * @Assert\Regex(
+      * @ORM\Column(type="string", length=7)
+      * @Assert\Regex(
      *      pattern="/[1-9]{7}/",
      *      message="Le numéro IMO doit comporter 7 chiffres"
      * )
