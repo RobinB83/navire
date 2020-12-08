@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AisShipTypeRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Length;
 
 /**
@@ -25,8 +25,8 @@ class AisShipType
     private $libelle;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Length(min=1,
+      * @ORM\Column(type="integer")
+      * @Assert\Length(min=1,
      *           max=9,
      *           minMessage = "Le type d'un navire est compris entre 1 et 9",
      *           maxMessage = "Le type d'un navire est compris entre 1 et 9",
