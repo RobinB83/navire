@@ -8,21 +8,21 @@
         {{ form_start(form) }}
         <div class="col-8" id="some-custom-id">
             {{ form_label(form.nom, 'Nom') }}
-            {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom du contact'}}) }}
+            {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom du contact','class':'form-control'}}) }}
         </div>
         <div class="col-8" id="some-custom-id">
             {{ form_label(form.prenom, 'Prénom') }}
-            {{ form_widget(form.prenom, {'attr': {'placeholder': 'Prénom du contact'}}) }}
+            {{ form_widget(form.prenom, {'attr': {'placeholder': 'Prénom du contact','class':'form-control'}}) }}
         </div>
         <div class="col-8" id="some-custom-id">
             {{ form_label(form.mail, 'Mail') }}
-            {{ form_widget(form.mail, {'attr': {'placeholder': 'Adresse email'}}) }}
+            {{ form_widget(form.mail, {'attr': {'placeholder': 'Adresse email','class':'form-control'}}) }}
         </div>
-        <div class="form-group">
+        <div class="col-12" class="form-group">
             {{ form_label(form.message, 'Message') }}
-            {{ form_widget(form.message, {'attr': {'placeholder': 'Que voulez-vous nous dire ?'}}) }}
+            {{ form_widget(form.message, {'attr': {'placeholder': 'Que voulez-vous nous dire ?','class':'form-control'}}) }}
         </div>
-            
-            <button type='submit' class='btn btn-success'>Envoyer</button>
+        </br>
+            <button type='submit' class='btn btn-success' style="margin-left: 15px;">Envoyer</button>
             {{ form_end(form) }}
 {% endblock %}
