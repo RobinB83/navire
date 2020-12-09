@@ -3,8 +3,9 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
+    </br>
     <div class="container">
-        {{ form_start{form} }}
+        {{ form_start(form) }}
         <div class="col-8" id="some-custom-id">
             {{ form_label(form.nom, 'Nom') }}
             {{ form_widget(form.nom, {'attr': {'placeholder': 'Nom du contact'}}) }}
@@ -22,6 +23,6 @@
             {{ form_widget(form.message, {'attr': {'placeholder': 'Que voulez-vous nous dire ?'}}) }}
         </div>
             
-            <button type='submit' class='btn btn-sucess'>Envoyer</button>
+            <button type='submit' class='btn btn-success'>Envoyer</button>
             {{ form_end(form) }}
 {% endblock %}
