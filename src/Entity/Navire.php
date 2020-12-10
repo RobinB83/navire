@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\NavireRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
+ * @ORM\Table( name="navire" ,
+ *              uniqueConstraints={@ORM\UniqueConstraint(name="mmsi_unique",columns={"mmsi"})}
+ * )
  */
 class Navire
 {
@@ -20,7 +25,7 @@ class Navire
     private $id;
 
     /**
-      * @ORM\Column(type="string", length=7)
+      * @ORM\Column(type="string", length=7, unique=true)
       * @Assert\Regex(
      *      pattern="/[1-9]{7}/",
      *      message="Le numéro IMO doit comporter 7 chiffres"
@@ -63,6 +68,22 @@ class Navire
      * @ORM\JoinColumn(nullable=false)
      */
     private $idAisShipType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pays::class)
+     * @ORM\JoinColumn(name="idpays", nullable=false)
+     */
+    private $lePavillon;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Escale::class, mappedBy="leNavire", orphanRemoval=true)
+     */
+    private $lesEscales;
+
+    public function __construct()
+    {
+        $this->lesEscales = new ArrayCollection();
+    }
 
     
     public function getId(): ?int
@@ -145,6 +166,48 @@ class Navire
     public function setIdAisShipType(?AisShipType $idAisShipType): self
     {
         $this->idAisShipType = $idAisShipType;
+
+        return $this;
+    }
+
+    public function getLePavillon(): ?Pays
+    {
+        return $this->lePavillon;
+    }
+
+    public function setLePavillon(?Pays $lePavillon): self
+    {
+        $this->lePavillon = $lePavillon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Escale[]
+     */
+    public function getLesEscales(): Collection
+    {
+        return $this->lesEscales;
+    }
+
+    public function addLesEscale(Escale $lesEscale): self
+    {
+        if (!$this->lesEscales->contains($lesEscale)) {
+            $this->lesEscales[] = $lesEscale;
+            $lesEscale->setLeNavire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesEscale(Escale $lesEscale): self
+    {
+        if ($this->lesEscales->removeElement($lesEscale)) {
+            // set the owning side to null (unless already changed)
+            if ($lesEscale->getLeNavire() === $this) {
+                $lesEscale->setLeNavire(null);
+            }
+        }
 
         return $this;
     }
