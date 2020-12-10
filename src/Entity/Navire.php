@@ -57,6 +57,13 @@ class Navire
      * 
      */
     private $eta;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=AisShipType::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idAisShipType;
+
     
     public function getId(): ?int
     {
@@ -129,4 +136,18 @@ class Navire
 
         return $this;
     }
+
+    public function getIdAisShipType(): ?AisShipType
+    {
+        return $this->idAisShipType;
+    }
+
+    public function setIdAisShipType(?AisShipType $idAisShipType): self
+    {
+        $this->idAisShipType = $idAisShipType;
+
+        return $this;
+    }
+
+   
 }
