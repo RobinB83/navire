@@ -52,7 +52,7 @@ class Navire
     private $mmsi;
     
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, name="indicatifappel")
      * 
      */
     private $indicatifAppel;
@@ -65,7 +65,7 @@ class Navire
 
     /**
      * @ORM\ManyToOne(targetEntity=AisShipType::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="idaisshiptype")
      */
     private $idAisShipType;
 
