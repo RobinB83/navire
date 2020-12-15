@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Range;
 
 /**
  * @ORM\Entity(repositoryClass=NavireRepository::class)
@@ -79,6 +80,35 @@ class Navire
      * @ORM\OneToMany(targetEntity=Escale::class, mappedBy="leNavire", orphanRemoval=true)
      */
     private $lesEscales;
+
+    /**
+     * @ORM\Column(type="integer") 
+     * @Assert\Range(
+     *      min=0,
+     *      notInRangeMessage="La longueur doit être un entier positif"
+     * )
+     */
+    private $Longueur;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min=0,
+     *      notInRangeMessage="La largeur doit être un entier positif"
+     * )
+     */
+    private $Largeur;
+
+    /**
+     * @ORM\Column(type="decimal", precision=3, scale=1, name="tirandeau")
+     */
+    private $tirandeau;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Port::class, inversedBy="naviresAttendus", cascade={"persist"})
+     * @ORM\JoinColumn(name="idportdestination", nullable=true)
+     */
+    private $portDestination;
 
     public function __construct()
     {
@@ -208,6 +238,54 @@ class Navire
                 $lesEscale->setLeNavire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLongueur(): ?int
+    {
+        return $this->Longueur;
+    }
+
+    public function setLongueur(int $Longueur): self
+    {
+        $this->Longueur = $Longueur;
+
+        return $this;
+    }
+
+    public function getLargeur(): ?int
+    {
+        return $this->Largeur;
+    }
+
+    public function setLargeur(int $Largeur): self
+    {
+        $this->Largeur = $Largeur;
+
+        return $this;
+    }
+
+    public function getTirantEau(): ?string
+    {
+        return $this->tirandeau;
+    }
+
+    public function setTirantEau(string $tirant_eau): self
+    {
+        $this->tirandeau = $tirant_eau;
+
+        return $this;
+    }
+
+    public function getPortDestination(): ?Port
+    {
+        return $this->portDestination;
+    }
+
+    public function setPortDestination(?Port $portDestination): self
+    {
+        $this->portDestination = $portDestination;
 
         return $this;
     }

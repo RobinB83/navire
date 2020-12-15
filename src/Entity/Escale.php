@@ -34,6 +34,11 @@ class Escale
      */
     private $lePort;
 
+    /**
+     * @ORM\Column(type="datetime", name="dateheuredepart")
+     */
+    private $dateHeureDepart;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +76,18 @@ class Escale
     public function setLePort(?Port $lePort): self
     {
         $this->lePort = $lePort;
+
+        return $this;
+    }
+
+    public function getDateHeureDepart(): ?\DateTimeInterface
+    {
+        return $this->dateHeureDepart;
+    }
+
+    public function setDateHeureDepart(\DateTimeInterface $dateHeureDepart): self
+    {
+        $this->dateHeureDepart = $dateHeureDepart;
 
         return $this;
     }
