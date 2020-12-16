@@ -3,23 +3,23 @@
 {% block title %}Hello AisShipTypeController!{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Navires</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Numéro</td>
-                <td>Libelle</td>
-            </tr>
-            {% for cle, valeur in types %}
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                <td>{{ cle }}</td>
-                <td>{{ valeur }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+                    <th> Type </th>
+                    <th> Libelle </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                    <tr class="table-primary">
+                        <td>{{ type.aisshiptype }}</td>
+                        <td>{{ type.libelle }}</td> 
+                        <td> <a href="{{ path('aisshiptype_portscompatibles', {id: type.id}) }}"> Ports compatibles</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
