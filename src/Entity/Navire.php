@@ -28,7 +28,7 @@ class Navire
     /**
       * @ORM\Column(type="string", length=7, unique=true)
       * @Assert\Regex(
-     *      pattern="/[1-9]{7}/",
+     *      pattern="/[1-9][0-9]{6}/",
      *      message="Le numéro IMO doit comporter 7 chiffres"
      * )
      */
@@ -45,9 +45,9 @@ class Navire
     
     /**
      * @ORM\Column(type="string", length=9)
-     *  @Assert\Length(
-     *      min=9,
-     *      max=9
+     * @Assert\Regex(
+     *      pattern="/[1-9][0-9]{8}/",
+     *      message="Le numéro MMSI doit comporter 9 chiffres"
      * )
      */
     private $mmsi;
