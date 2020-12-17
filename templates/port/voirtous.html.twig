@@ -1,0 +1,27 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Voir Tous{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th> Indicatif </th>
+                    <th> Nom </th>
+                    <th> Pays </th>
+                    <th> Voir </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for port in ports %}
+                    <tr class="table">
+                        <td>{{ port.indicatif }}</td>
+                        <td>{{ port.nom }}</td> 
+                        <td>{{ port.lePays.nom }}</td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
