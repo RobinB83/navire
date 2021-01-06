@@ -12,10 +12,9 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Navire[]    findAll()
  * @method Navire[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NavireRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class NavireRepository extends ServiceEntityRepository {
+
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Navire::class);
     }
 
@@ -23,28 +22,43 @@ class NavireRepository extends ServiceEntityRepository
     //  * @return Navire[] Returns an array of Navire objects
     //  */
     /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+      public function findByExampleField($value)
+      {
+      return $this->createQueryBuilder('a')
+      ->andWhere('a.exampleField = :val')
+      ->setParameter('val', $value)
+      ->orderBy('a.id', 'ASC')
+      ->setMaxResults(10)
+      ->getQuery()
+      ->getResult()
+      ;
+      }
+     */
 
     /*
-    public function findOneBySomeField($value): ?Navire
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+      public function findOneBySomeField($value): ?Navire
+      {
+      return $this->createQueryBuilder('a')
+      ->andWhere('a.exampleField = :val')
+      ->setParameter('val', $value)
+      ->getQuery()
+      ->getOneOrNullResult()
+      ;
+      }
+     */
+
+    public function getIdby(string $type, $valeur) {
+        if ($type == 'imo') {
+            $id = $this->getEntityManager()
+                    ->createQuery("select n.id from App\Entity\Navire n where n.imo = :valeur")
+                    ->setParameter('valeur', $valeur);
+        } else {
+            $id = $this->getEntityManager()
+                    ->createQuery("select n.id from App\Entity\Navire n where n.mmsi = :valeur")
+                    ->setParameter('valeur', $valeur);
+                    
+        }
+        return $id->getResult();
     }
-    */
+
 }

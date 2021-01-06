@@ -66,9 +66,9 @@ class Navire
 
     /**
      * @ORM\ManyToOne(targetEntity=AisShipType::class)
-     * @ORM\JoinColumn(nullable=false, name="idaisshiptype")
+     * @ORM\JoinColumn(name="idaisshiptype", nullable=false)
      */
-    private $idAisShipType;
+    private $leType;
 
     /**
      * @ORM\ManyToOne(targetEntity=Pays::class)
@@ -188,14 +188,14 @@ class Navire
         return $this;
     }
 
-    public function getIdAisShipType(): ?AisShipType
+    public function getleType(): ?AisShipType
     {
-        return $this->idAisShipType;
+        return $this->leType;
     }
 
-    public function setIdAisShipType(?AisShipType $idAisShipType): self
+    public function setleType(?AisShipType $leType): self
     {
-        $this->idAisShipType = $idAisShipType;
+        $this->leType = $leType;
 
         return $this;
     }
@@ -266,12 +266,12 @@ class Navire
         return $this;
     }
 
-    public function getTirantEau(): ?string
+    public function getTirandeau(): ?string
     {
         return $this->tirandeau;
     }
 
-    public function setTirantEau(string $tirant_eau): self
+    public function setTirantdEau(string $tirant_eau): self
     {
         $this->tirandeau = $tirant_eau;
 
