@@ -47,18 +47,19 @@ class NavireRepository extends ServiceEntityRepository {
       }
      */
 
-    public function getIdby(string $type, $valeur) {
-        if ($type == 'imo') {
-            $id = $this->getEntityManager()
-                    ->createQuery("select n.id from App\Entity\Navire n where n.imo = :valeur")
-                    ->setParameter('valeur', $valeur);
+    public function getIdby(string $type, string $valeur) {
+        if ($type === 'imo') {
+            $dql = $this->getEntityManager()->createQuery('select n.id'
+                    . ' from App\Entity\Navire n'
+                    . ' where n.imo = :valeur');
+            $dql->setParameter('valeur', $valeur);
         } else {
-            $id = $this->getEntityManager()
-                    ->createQuery("select n.id from App\Entity\Navire n where n.mmsi = :valeur")
-                    ->setParameter('valeur', $valeur);
-                    
+            $dql = $this->getEntityManager()->createQuery('select n.id'
+                    . ' from App\Entity\Navire n'
+                    . ' where n.mmsi = :valeur');
+            $dql->setParameter('valeur', $valeur);
         }
-        return $id->getResult();
+        return $dql->getResult();
     }
 
 }

@@ -9,28 +9,33 @@ use App\Form\NavireType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Navire;
 use App\Repository\NavireRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
-     * @Route("/navire", name="navire_")
-     */
-class NavireController extends AbstractController
-{
-    /**
-     * @Route("/edit/{id}", name="edit")
-     */
-    public function edit(Request $request, \Doctrine\ORM\EntityManagerInterface $manager, NavireRepository $repo, int $id): Response
-    {
-        //$navire= new Navire();
+ * @Route("/navire", name="navire_")
+ */
+class NavireController extends AbstractController {
+
+     /**
+   * 
+   * @Route("/edit/{id}", name="edit")
+   * @param Request $request
+   * @param EntityManagerInterface $manager
+   * @return Response
+   */
+    public function edit(Request $request, EntityManagerInterface $manager, NavireRepository $repo, int $id): Response {
+        //$port = new Port();
         $navire = $repo->find($id);
-        $form=$this->createForm(NavireType::class, $navire);
-        $form ->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        $form = $this->createForm(NavireType::class, $navire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($navire);
             $manager->flush();
             return $this->redirectToRoute('accueil');
         }
-        return $this->render('navire/index.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render('navire/index.html.twig',
+                        ['form' => $form->createView(), 'imo' => $navire->getImo(), 'mmsi' => $navire->getMmsi()
+    ]);
     }
+
 }
