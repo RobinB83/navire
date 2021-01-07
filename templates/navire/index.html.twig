@@ -23,45 +23,45 @@
                 {{ form_widget(form.indicatifAppel, {'attr': {'placeholder': '','class':'form-control'}}) }}
             </div>&nbsp
             <div class="form-row">
-            <div class="form group col-md-4" id="some-custom-id"></br>
-                {{ form_label(form.Longueur, 'longueur') }}
-                {{ form_widget(form.Longueur, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
-            </div>
-            <div class="form group col-md-4" id="some-custom-id"></br>
-                {{ form_label(form.Largeur, 'longueur') }}
-                {{ form_widget(form.Largeur, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
-            </div>
-            <div class="form group col-md-4" id="some-custom-id"></br>
-                {{ form_label(form.tirandeau, 'tiran d\'eau') }}
-                {{ form_widget(form.tirandeau, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
-            </div>
+                <div class="form group col-md-4" id="some-custom-id"></br>
+                    {{ form_label(form.Longueur, 'longueur') }}
+                    {{ form_widget(form.Longueur, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
+                </div>
+                <div class="form group col-md-4" id="some-custom-id"></br>
+                    {{ form_label(form.Largeur, 'longueur') }}
+                    {{ form_widget(form.Largeur, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
+                </div>
+                <div class="form group col-md-4" id="some-custom-id"></br>
+                    {{ form_label(form.tirandeau, 'tiran d\'eau') }}
+                    {{ form_widget(form.tirandeau, {'attr': {'placeholder': '','class':'form-control','style':'width:200px'}}) }}
+                </div>
             </div>
         </div></br>
-        <div class="form-row">
-            <div class="col-8" id="some-custom-id">
+        <div>
+            <div id="some-custom-id">
                 {{ form_label(form.leType, 'Type de navire Pirate') }}
                 {{ form_widget(form.leType, {'attr': {'class':'form-control'}}) }}
             </div></br></br>
-        <div class="form group col-md-8" id="some-custom-id">
-            {{ form_label(form.eta, 'Estimated Time Arrival') }}
-            {{ form_widget(form.eta, {'attr': {'placeholder': '','class':'form-control'}}) }}
-        </div>
+            <div>
+                {{ form_label(form.eta, 'Estimated Time Arrival') }}
+                {{ form_widget(form.eta, {'attr': {'placeholder': '','class':'form-control'}}) }}
+            </div>
         </div>
         </br>
         <button type='submit' class='btn btn-success'>Modifier</button>
         {{ form_end(form) }}
     </div>
-        <div class="container" style="padding-top:10px;">
-    <script type="text/javascript">
-      // Map appearance
-      var width = "100%";         // width in pixels or percentage
-      var height = "300";         // height in pixels
-      var names = true;           // always show ship names (defaults to false)
-      // Single ship tracking
-      var imo = "{{ imo }}";        // display latest position (by IMO, overrides MMSI)
-      var mmsi = "{{ mmsi }}";
-      var show_track = true;      // display track line (last 24 hours)
-    </script>
-    <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
-  </div>
-    {% endblock %}
+    <div class="container" style="padding-top:10px;">
+        <script type="text/javascript">
+            // Map appearance
+            var width = "100%";         // width in pixels or percentage
+            var height = "300";         // height in pixels
+            var names = true;           // always show ship names (defaults to false)
+            // Single ship tracking
+            var imo = "{{ imo }}";        // display latest position (by IMO, overrides MMSI)
+            var mmsi = "{{ mmsi }}";
+            var show_track = true;      // display track line (last 24 hours)
+        </script>
+        <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+    </div>
+{% endblock %}

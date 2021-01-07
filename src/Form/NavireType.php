@@ -31,7 +31,7 @@ class NavireType extends AbstractType {
                             'multiple' => false,
                         ])
                 ->add('eta', DateTimeType::class, [
-                    'placeholder' => ['months' => 'Months', 'days' => 'Days', 'years' => 'Years', 'hours' => 'Hours', 'minutes' => 'Minutes']
+                    'widget' => 'single_text'
                 ])
         ;
     }
